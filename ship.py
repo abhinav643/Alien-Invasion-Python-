@@ -1,8 +1,10 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Ship():
+class Ship(Sprite):
     def __init__(self,ai_settings,screen):
         #initialize ship and set its starting position
+        super().__init__()
         self.screen = screen
         self.ai_settings = ai_settings     #using ai_settings as an attribute 
 
@@ -29,11 +31,14 @@ class Ship():
             self.center-=self.ai_settings.ship_speed_factor         #updating ship movement based on movement flag if it is true moves to left until left arrow key is released
 
         self.rect.centerx = self.center               #update rect object from self.center variable but takes only int part
-       
+
 
     def blitme(self):
-          #draw ship at its current location
+        #draw ship at its current location
         self.screen.blit(self.image,self.rect)
+    
 
+    def center_ship(self):
+        self.center = self.screen_rect.centerx         #placing ship on center of screen 
 
     
